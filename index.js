@@ -420,7 +420,7 @@ const quiz = [
     incorrect_answers: ["Hashing algorithm", "Asymmetric encryption", "Stream cipher"],
   },
 ];
-
+let buttons = [];
 let quest = [];
 function quizStart(eventClick) {
   let difficulty = document.getElementById("difficultySelect").value;
@@ -437,6 +437,7 @@ function quizStart(eventClick) {
   menuQuiz();
 }
 let index = 0;
+let rispostegiuste = 0;
 function menuQuiz() {
   document.getElementById("begginingquiz").innerHTML += `<h3>${quest[index].question}</h3>`;
   if (quest[index].type === "multiple") {
@@ -448,9 +449,56 @@ function menuQuiz() {
     }
     const risposte2 = risposte1.sort((a, b) => 0.5 - Math.random());
     for (let i = 0; i < 4; i++)
-      document.getElementById("begginingquiz").innerHTML += `<button class="risposta">${risposte2[i]}</button>`;
+      document.getElementById(
+        "begginingquiz"
+      ).innerHTML += `<button class="risposta" onclick="select(event)" value="${risposte2[i]}">${risposte2[i]}</button>`;
   } else {
-    document.getElementById("begginingquiz").innerHTML += `<button class="risposta">True</button>`;
-    document.getElementById("begginingquiz").innerHTML += `<button class="risposta">False</button>`;
+    document.getElementById(
+      "begginingquiz"
+    ).innerHTML += `<button class="risposta" onclick="select(event)" value="true">True</button>`;
+    document.getElementById(
+      "begginingquiz"
+    ).innerHTML += `<button class="risposta" onclick="select(event)" value="false">False</button>`;
   }
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="proceedbutton" onclick="answer(event)">PROCEED</button>`;
+  document.getElementById("counter").innerHTML += `<p id="qid">QUESTION ${
+    index + 1
+  }<span class="totquestion">/10</span></p>`;
+  buttons = document.querySelectorAll(".risposta");
+}
+
+function select(event) {
+  console.log(buttons);
+  buttons.forEach((btn) => {
+    if (btn === event.target) {
+      btn.classList.add("selected");
+    } else {
+      btn.classList.remove("selected");
+    }
+  });
+}
+
+function answer(eventClick) {
+  let rispostaSelect = document.querySelector(".selected").value;
+  if (rispostaSelect === quest[index].correct_answer) {
+    rispostegiuste += 1;
+  }
+  index += 1;
+  document.getElementById("begginingquiz").innerHTML = "";
+  document.getElementById("qid").remove();
+  if (index < 10) {
+    menuQuiz();
+  } else {
+    risultati();
+  }
+}
+
+function risultati() {
+  document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
+  document.getElementById("begginingquiz").innerHTML += `<h3>The summery of your anwsers`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<div class="results"><h1>Correct ${rispostegiuste}/10</h1> <h4> </div>`;
 }
