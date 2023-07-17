@@ -500,5 +500,15 @@ function risultati() {
   document.getElementById("begginingquiz").innerHTML += `<h3>The summery of your anwsers`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<div class="results"><h1>Correct ${rispostegiuste}/10</h1> <h4> </div>`;
+  ).innerHTML += `<div id="results" class="results"><h1>Correct ${rispostegiuste}/10</h1></div>`;
+  if (rispostegiuste > 5) {
+    document.getElementById("results").innerHTML +=
+      "<h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p>";
+  } else {
+    document.getElementById("results").innerHTML +=
+      "<h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4>";
+  }
+  document.getElementById("begginingquiz").innerHTML += `<div id="results" class="results"><h1>Wrong ${
+    10 - rispostegiuste
+  }/10</h1></div>`;
 }
