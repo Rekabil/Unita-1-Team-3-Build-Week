@@ -49,3 +49,24 @@ input.checkbox {
   width: 20px;
   height: 20px;
 }
+
+.quiztitle {
+  display: inline-block;
+}
+.quiz {
+  text-align: center;
+}
+.risposta {
+  border-radius: 20%;
+  width: 400px;
+  padding-block: 30px;
+  margin: 20px 50px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+}
+.risposta:focus {
+  background: rgb(210, 0, 147);
+  background: linear-gradient(4deg, rgba(144, 0, 128, 1) 35%, rgba(210, 0, 147, 1) 70%);
+}
