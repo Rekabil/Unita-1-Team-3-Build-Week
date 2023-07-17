@@ -1,0 +1,48 @@
+body {
+  padding: 40px 80px;
+  background-image: url(assets/bg.jpg);
+  background-size: cover;
+  margin: 0px;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+img {
+  width: 200px;
+}
+
+h1 {
+  font-size: 6rem;
+  font-weight: 400;
+  line-height: 0.8;
+}
+h2 {
+  font-size: 2rem;
+  color: #c2128d;
+}
+span {
+  font-weight: 900;
+}
+
+form {
+  margin-top: 50px;
+}
+form * {
+  display: inline-block;
+}
+button {
+  margin-left: 200px;
+  padding: 20px 60px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  background-color: #00ffff;
+  box-shadow: 0px 0px 10px 10px #00ffff39;
+}
+.promise {
+  font-size: 0.8rem;
+}
+input.checkbox {
+  width: 20px;
+  height: 20px;
+}
