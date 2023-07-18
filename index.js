@@ -531,6 +531,9 @@ function risultati() {
       "<canvas id='chart'></canvas><div class='textcenter'><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div>";
   }
   document.getElementById("results").innerHTML += `<h1>Wrong ${10 - rispostegiuste}/10</h1>`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="bluebutton" href="feedback.html" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
   let ctx = document.getElementById("chart");
   let chart = new Chart(ctx, {
     type: "doughnut",
@@ -552,4 +555,24 @@ function risultati() {
       },
     },
   });
+}
+
+function rating(clickEvent) {
+  clickEvent.preventDefault();
+  const stars = document.querySelectorAll(".star");
+  const divstar = document.querySelector(".rating");
+  console.log(clickEvent.target);
+  if (clickEvent.target !== divstar) {
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].classList.remove("ratingselect");
+    }
+    for (let i = 0; i < stars.length; i++) {
+      if (stars[i] === clickEvent.target) {
+        stars[i].classList.add("ratingselect");
+        return;
+      } else {
+        stars[i].classList.add("ratingselect");
+      }
+    }
+  }
 }
