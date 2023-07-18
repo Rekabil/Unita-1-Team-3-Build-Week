@@ -436,13 +436,32 @@ function quizStart(eventClick) {
   document.getElementById("divdiff").remove();
   menuQuiz();
 }
+
 let index = 0;
 let rispostegiuste = 0;
-let c = 5;
+let c = 60;
 let intervalID = null;
 const countDown = () => {
   intervalID = setInterval(function () {
-    document.getElementById("countDown").innerHTML = ` <p>${c}</p>`;
+    document.getElementById(
+      "countDown"
+    ).innerHTML = `<canvas id="grafico"></canvas><div class="textcenter"><p >${c}</p></div>`;
+
+    let graficCount = document.getElementById("grafico");
+    let graficCounter = new Chart(graficCount, {
+      type: "doughnut",
+      data: {
+        datasets: [
+          {
+            data: [c, 60 - c],
+            backgroundColor: ["#10FF03", "#FF6384"],
+            hoverBackgroundColor: ["#36A2EB", "#FF6384"],
+            cutout: 30,
+          },
+        ],
+      },
+    });
+    graficCounter;
     c--;
     if (c < 0) {
       answer();
@@ -503,7 +522,7 @@ function answer(eventClick) {
     }
   }
   index += 1;
-  c = 5;
+  c = 60;
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById("qid").remove();
   document.querySelector("#countDown p").innerHTML = "";
