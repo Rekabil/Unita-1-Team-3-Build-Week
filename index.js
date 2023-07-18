@@ -525,10 +525,10 @@ function risultati() {
 
   if (rispostegiuste > 5) {
     document.getElementById("results").innerHTML +=
-      "<canvas id='chart'></canvas><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p>";
+      "<canvas id='chart'></canvas><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<div><canvas id='chart'></canvas><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div>";
+      "<canvas id='chart'></canvas><div class='textcenter'><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div>";
   }
   document.getElementById("results").innerHTML += `<h1>Wrong ${10 - rispostegiuste}/10</h1>`;
   let ctx = document.getElementById("chart");
@@ -541,6 +541,7 @@ function risultati() {
           data: [rispostegiuste, 10 - rispostegiuste],
           backgroundColor: ["#36A2EB", "#FF6384"],
           hoverBackgroundColor: ["#36A2EB", "#FF6384"],
+          cutout: 100,
         },
       ],
     },
