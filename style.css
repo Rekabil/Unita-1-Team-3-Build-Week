@@ -9,6 +9,9 @@ body {
   font-family: "Inter", sans-serif;
   font-size: 16px;
 }
+header * {
+  display: inline-block;
+}
 
 img {
   width: 200px;
@@ -83,4 +86,10 @@ footer {
   font-size: 1.2rem;
   background-color: #00ffff;
   box-shadow: 0px 0px 10px 10px #00ffff39;
+}
+#countDown {
+  text-align: right;
+  font-size: 40px;
+  margin-left: 500px;
+  height: 100px;
 }
