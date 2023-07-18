@@ -540,16 +540,16 @@ function risultati() {
   document.getElementById("begginingquiz").innerHTML += `<h3>The summery of your anwsers`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<div id="results" class="results"><h1>Correct ${rispostegiuste}/10</h1></div>`;
+  ).innerHTML += `<div id="results" class="results"><h1>Correct ${rispostegiuste}/10</h1></br></div>`;
 
   if (rispostegiuste > 5) {
     document.getElementById("results").innerHTML +=
-      "<canvas id='chart'></canvas><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div>";
+      "<canvas id='chart'></canvas><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div></br>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<canvas id='chart'></canvas><div class='textcenter'><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div>";
+      "<canvas id='chart'></canvas><div class='textcenter'><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div></br>";
   }
-  document.getElementById("results").innerHTML += `<h1>Wrong ${10 - rispostegiuste}/10</h1>`;
+  document.getElementById("results").innerHTML += `<h1>Wrong ${10 - rispostegiuste}/10</h1></br>`;
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" href="feedback.html" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
@@ -557,7 +557,6 @@ function risultati() {
   let chart = new Chart(ctx, {
     type: "doughnut",
     data: {
-      labels: ["Correct", "Wrong"],
       datasets: [
         {
           data: [rispostegiuste, 10 - rispostegiuste],
@@ -567,12 +566,6 @@ function risultati() {
         },
       ],
     },
-    options: {
-      legend: {
-        display: true,
-        position: "bottom",
-      },
-    },
   });
 }
 
@@ -580,7 +573,6 @@ function rating(clickEvent) {
   clickEvent.preventDefault();
   const stars = document.querySelectorAll(".star");
   const divstar = document.querySelector(".rating");
-  console.log(clickEvent.target);
   if (clickEvent.target !== divstar) {
     for (let i = 0; i < stars.length; i++) {
       stars[i].classList.remove("ratingselect");
