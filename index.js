@@ -438,7 +438,20 @@ function quizStart(eventClick) {
 }
 let index = 0;
 let rispostegiuste = 0;
+let c = 5;
+let intervalID = null;
+const countDown = () => {
+  intervalID = setInterval(function () {
+    document.getElementById("countDown").innerHTML = ` <p>${c}</p>`;
+    c--;
+    if (c < 0) {
+      answer();
+    }
+  }, 1000);
+};
+
 function menuQuiz() {
+  countDown();
   document.getElementById("begginingquiz").innerHTML += `<h3>${quest[index].question}</h3>`;
   if (quest[index].type === "multiple") {
     const risposte1 = [];
@@ -481,16 +494,24 @@ function select(event) {
 }
 
 function answer(eventClick) {
-  let rispostaSelect = document.querySelector(".selected").value;
-  if (rispostaSelect === quest[index].correct_answer) {
-    rispostegiuste += 1;
+  clearInterval(intervalID);
+  let risp = document.querySelector(".selected");
+  if (risp != null) {
+    let rispostaSelect = risp.value;
+    if (rispostaSelect === quest[index].correct_answer) {
+      rispostegiuste += 1;
+    }
   }
   index += 1;
+  c = 5;
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById("qid").remove();
+  document.querySelector("#countDown p").innerHTML = "";
+
   if (index < 10) {
     menuQuiz();
   } else {
+    document.getElementById("countDown").remove();
     risultati();
   }
 }
