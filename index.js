@@ -442,26 +442,17 @@ let rispostegiuste = 0;
 let c = 60;
 let intervalID = null;
 const countDown = () => {
+  const progessAmount = `${c}`;
+  const progressTime = "#2ecc71";
   intervalID = setInterval(function () {
     document.getElementById(
       "countDown"
-    ).innerHTML = `<canvas id="grafico"></canvas><div class="textcenter"><p >${c}</p></div>`;
+    ).innerHTML = `<div style={width:"60px";, "height:60px";,display:"flex";,alighItems:"center";,justifyContent:"center";,background:"conic-gradient(${
+      this.progressTime
+    } ${this.progessAmount}%, 0, #ecf0f1 ${(
+      100 - parseInt(this.progessAmount)
+    ).toString()}%)";, borderRadius: "50%";} class="textcenter timer"><p >${c}</p></div>`;
 
-    let graficCount = document.getElementById("grafico");
-    let graficCounter = new Chart(graficCount, {
-      type: "doughnut",
-      data: {
-        datasets: [
-          {
-            data: [c, 60 - c],
-            backgroundColor: ["#10FF03", "#FF6384"],
-            hoverBackgroundColor: ["#36A2EB", "#FF6384"],
-            cutout: 30,
-          },
-        ],
-      },
-    });
-    graficCounter;
     c--;
     if (c < 0) {
       answer();

@@ -117,7 +117,7 @@ footer {
   width: 300px;
   position: relative;
   margin: 0 auto;
-  display: contents inline;
+  display: inline-block;
 }
 .results h1 {
   font-size: 30px;
