@@ -93,3 +93,12 @@ footer {
   margin-left: 500px;
   height: 100px;
 }
+.results {
+  width: 200px;
+}
+.results h1 {
+  font-size: 30px;
+}
+.results * {
+  display: inline-block;
+}

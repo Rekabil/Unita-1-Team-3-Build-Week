@@ -522,14 +522,33 @@ function risultati() {
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<div id="results" class="results"><h1>Correct ${rispostegiuste}/10</h1></div>`;
+
   if (rispostegiuste > 5) {
     document.getElementById("results").innerHTML +=
-      "<h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p>";
+      "<canvas id='chart'></canvas><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4>";
+      "<div><canvas id='chart'></canvas><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div>";
   }
-  document.getElementById("begginingquiz").innerHTML += `<div id="results" class="results"><h1>Wrong ${
-    10 - rispostegiuste
-  }/10</h1></div>`;
+  document.getElementById("results").innerHTML += `<h1>Wrong ${10 - rispostegiuste}/10</h1>`;
+  let ctx = document.getElementById("chart");
+  let chart = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Correct", "Wrong"],
+      datasets: [
+        {
+          data: [rispostegiuste, 10 - rispostegiuste],
+          backgroundColor: ["#36A2EB", "#FF6384"],
+          hoverBackgroundColor: ["#36A2EB", "#FF6384"],
+        },
+      ],
+    },
+    options: {
+      legend: {
+        display: true,
+        position: "bottom",
+      },
+    },
+  });
 }
