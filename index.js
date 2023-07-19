@@ -422,19 +422,22 @@ const quiz = [
 ];
 let buttons = [];
 let quest = [];
+let qcount = null;
 function quizStart(eventClick) {
   let difficulty = document.getElementById("difficultySelect").value;
-
-  let qcount = 0;
-
-  for (let i = 0; i < quiz.length; i++) {
-    if (quiz[i].difficulty === difficulty && quest.length < 10) {
-      quest.push(quiz[i]);
+  qcount = document.getElementById("nQuestion").value;
+  qcount = parseInt(qcount);
+  if (!isNaN(qcount)) {
+    for (let i = 0; i < quiz.length; i++) {
+      if (quiz[i].difficulty === difficulty && quest.length < qcount) {
+        quest.push(quiz[i]);
+      }
     }
+    document.getElementById("divdiff").remove();
+    menuQuiz();
+  } else {
+    alert("scegli il numero di domande");
   }
-
-  document.getElementById("divdiff").remove();
-  menuQuiz();
 }
 
 let index = 0;
@@ -486,7 +489,7 @@ function menuQuiz() {
   ).innerHTML += `<button class="proceedbutton" onclick="answer(event)">PROCEED</button>`;
   document.getElementById("counter").innerHTML += `<p id="qid">QUESTION ${
     index + 1
-  }<span class="totquestion">/10</span></p>`;
+  }<span class="totquestion">/${qcount}</span></p>`;
   buttons = document.querySelectorAll(".risposta");
 }
 
@@ -516,7 +519,7 @@ function answer(eventClick) {
   document.getElementById("qid").remove();
   document.querySelector("#countDown").innerHTML = "";
 
-  if (index < 10) {
+  if (index < qcount) {
     menuQuiz();
   } else {
     document.getElementById("countDown").remove();
@@ -529,21 +532,21 @@ function risultati() {
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<div id="results" class="results"><h3>Correct ${rispostegiuste}/10</h3></div>`;
+  ).innerHTML += `<div id="results" class="results"><h3>Correct ${rispostegiuste}/${qcount}</h3></div>`;
 
-  if (rispostegiuste > 5) {
+  if (rispostegiuste > qcount / 2) {
     document.getElementById("results").innerHTML +=
       "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div>";
   } else {
     document.getElementById("results").innerHTML +=
       "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
   }
-  document.getElementById("results").innerHTML += `<h3>Wrong ${10 - rispostegiuste}/10</h3>`;
+  document.getElementById("results").innerHTML += `<h3>Wrong ${qcount - rispostegiuste}/${qcount}</h3>`;
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" href="feedback.html" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
   let ctx = document.getElementById("chart");
-  let chartRisultati = (rispostegiuste * 360) / 10;
+  let chartRisultati = (rispostegiuste * 360) / qcount;
   ctx.style.background =
     " conic-gradient(#05FF09 0deg, #05FF09 " +
     chartRisultati +
