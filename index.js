@@ -453,12 +453,12 @@ const countDown = () => {
   intervalID = setInterval(function () {
     document.getElementById(
       "countDown"
-    ).innerHTML = `<div id=grafico></div><div class="textcenter chartcenter">${c}</div>`;
+    ).innerHTML = `<div id=grafico></div><div class="textcenter chartcenter"><div><span>SECONDS</span>${c}<span>REMAINS</span></div></div>`;
 
     let pieChart = document.getElementById("grafico");
     let temporimasto = ((60 - c) * 360) / 60;
     pieChart.style.background =
-      " conic-gradient(#ff0000 0deg, #ff0000 " + temporimasto + "deg, #05FF09 " + temporimasto + "deg, #05FF09 360deg)";
+      " conic-gradient(#99699D 0deg, #99699D " + temporimasto + "deg, #00FFFF " + temporimasto + "deg, #00FFFF 360deg)";
     c--;
     if (c < 0) {
       answer();
