@@ -443,7 +443,11 @@ let c = 60;
 let intervalID = null;
 const countDown = () => {
   intervalID = setInterval(function () {
+<<<<<<< Updated upstream
     document.getElementById("countDown").innerHTML = `<div id=grafico></div><div class="textcenter"><p >${c}</p></div>`;
+=======
+    document.getElementById("countDown").innerHTML = `<p >${c}</p>`;
+>>>>>>> Stashed changes
 
     let pieChart = document.getElementById("grafico");
     let temporimasto = ((60 - c) * 360) / 60;
