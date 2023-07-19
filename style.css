@@ -114,14 +114,16 @@ footer {
   height: 100px;
 }
 .results {
-  width: 300px;
   position: relative;
   margin: 0 auto;
-  display: inline-block;
 }
 .results h1 {
   font-size: 30px;
 }
+.results * {
+  display: inline-block;
+}
+
 .textcenter {
   position: absolute;
   top: 50%;
@@ -160,4 +162,18 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+#grafico {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+#chart {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
 }
