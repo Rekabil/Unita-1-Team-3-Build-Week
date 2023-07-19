@@ -494,7 +494,7 @@ function menuQuiz() {
   ).innerHTML += `<button class="proceedbutton" onclick="answer(event)">PROCEED</button>`;
   document.getElementById("counter").innerHTML += `<p id="qid">QUESTION ${
     index + 1
-  }<span class="totquestion">/${qcount}</span></p>`;
+  }<span class="totquestion"> / ${qcount}</span></p>`;
   buttons = document.querySelectorAll(".risposta");
 }
 
@@ -540,7 +540,7 @@ function risultati() {
 
   if (rispostegiuste > qcount / 2) {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div>";
+      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes. Check your email(including promotions / span folder)</p></div>";
   } else {
     document.getElementById("results").innerHTML +=
       "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
@@ -550,13 +550,13 @@ function risultati() {
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" href="feedback.html" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
   let ctx = document.getElementById("chart");
-  let chartRisultati = (rispostegiuste * 360) / qcount;
+  let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =
-    " conic-gradient(#05FF09 0deg, #05FF09 " +
+    " conic-gradient(#B51289 0deg,#B51289 " +
     chartRisultati +
-    "deg, #ff0000 " +
+    "deg,   #00FFFF " +
     chartRisultati +
-    "deg, #ff0000 360deg)";
+    "deg,  #00FFFF 360deg)";
 }
 
 function rating(clickEvent) {

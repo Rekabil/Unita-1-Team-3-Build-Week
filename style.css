@@ -78,6 +78,7 @@ select option {
 }
 .quiz {
   text-align: center;
+  height: 500px;
 }
 .risposta {
   border-radius: 20px;
@@ -95,7 +96,7 @@ select option {
   background: linear-gradient(4deg, rgba(144, 0, 128, 1) 35%, rgba(210, 0, 147, 1) 70%);
 }
 footer {
-  margin-top: 100px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -202,15 +203,15 @@ footer {
   background: transparent;
 }
 #chart {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
 }
 .emptychart {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -228,4 +229,7 @@ footer {
 .smol {
   font-size: xx-small;
   font-weight: bold;
+}
+.totquestion {
+  color: #c2128d;
 }
