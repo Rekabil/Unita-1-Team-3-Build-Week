@@ -157,6 +157,15 @@ footer {
   width: 600px;
   margin-bottom: 50px;
 }
+.inputnumber {
+  background: transparent;
+  border: none;
+  color: white;
+  border-bottom: 2px solid #c2128d;
+  padding: 10px;
+  width: 100px;
+  margin-bottom: 50px;
+}
 
 .textcenter {
   position: absolute;
@@ -205,4 +214,7 @@ footer {
 
 .blue {
   color: #00ffff;
+}
+.smol {
+  font-size: xx-small;
 }

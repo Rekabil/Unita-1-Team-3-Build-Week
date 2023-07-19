@@ -433,10 +433,15 @@ function quizStart(eventClick) {
         quest.push(quiz[i]);
       }
     }
-    document.getElementById("divdiff").remove();
-    menuQuiz();
+    if (qcount > quest.length) {
+      quest = [];
+      alert("Surpassed the max number of questions");
+    } else {
+      document.getElementById("divdiff").remove();
+      menuQuiz();
+    }
   } else {
-    alert("scegli il numero di domande");
+    alert("Choose the numeber of questions");
   }
 }
 
@@ -494,7 +499,6 @@ function menuQuiz() {
 }
 
 function select(event) {
-  console.log(buttons);
   buttons.forEach((btn) => {
     if (btn === event.target) {
       btn.classList.add("selected");
