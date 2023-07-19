@@ -175,6 +175,7 @@ footer {
 }
 .chartcenter {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 70%;
@@ -217,4 +218,5 @@ footer {
 }
 .smol {
   font-size: xx-small;
+  font-weight: bold;
 }
