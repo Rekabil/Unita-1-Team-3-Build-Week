@@ -442,11 +442,10 @@ let rispostegiuste = 0;
 let c = 60;
 let intervalID = null;
 const countDown = () => {
-  const progessAmount = `${c}`;
-  const progressTime = "#2ecc71";
   intervalID = setInterval(function () {
-    document.getElementById("countDown").innerHTML = `<div id=grafico></div><div class="textcenter"><p >${c}</p></div>`;
-    document.getElementById("countDown").innerHTML = `<p >${c}</p>`;
+    document.getElementById(
+      "countDown"
+    ).innerHTML = `<div id=grafico></div><div class="textcenter chartcenter">${c}</div>`;
 
     let pieChart = document.getElementById("grafico");
     let temporimasto = ((60 - c) * 360) / 60;
@@ -515,7 +514,7 @@ function answer(eventClick) {
   c = 60;
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById("qid").remove();
-  document.querySelector("#countDown p").innerHTML = "";
+  document.querySelector("#countDown").innerHTML = "";
 
   if (index < 10) {
     menuQuiz();
@@ -527,17 +526,17 @@ function answer(eventClick) {
 
 function risultati() {
   document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
-  document.getElementById("begginingquiz").innerHTML += `<h3>The summery of your anwsers`;
+  document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<div id="results" class="results"><h3>Correct ${rispostegiuste}/10</h3></div>`;
 
   if (rispostegiuste > 5) {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div></br>";
+      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'></div><div class='textcenter'><h4>We are sorry</h4></br><h4 class='blue'>You didn't pass the exam</h4></div>";
+      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
   }
   document.getElementById("results").innerHTML += `<h3>Wrong ${10 - rispostegiuste}/10</h3>`;
   document.getElementById(
