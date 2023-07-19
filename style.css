@@ -177,10 +177,19 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
-  height: 70%;
+  width: 75%;
+  height: 75%;
   background: #0b113b;
   border-radius: 50%;
+}
+.chartcenter div {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.chartcenter span {
+  font-size: 10px;
+  font-weight: bold;
 }
 
 #grafico {
