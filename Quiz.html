@@ -15,10 +15,13 @@
     <div id="divdiff">
       <h3 class="quiztitle">SELECT YOUR DIFFICULTY:</h3>
       <select class="diffselect" name="diff" id="difficultySelect">
-        <option value="easy">EASY</option>
-        <option value="medium">MEDIUM</option>
-        <option value="hard">HARD</option>
+        <option value="easy">EASY max 15 questions</option>
+        <option value="medium">MEDIUM max 22 questions</option>
+        <option value="hard">HARD max 13 questions</option>
       </select>
+      <br />
+      <label>Inserisci il numero di domande</label>
+      <input id="nQuestion" type="number" />
       <button class="bluebutton rightalign" onclick="quizStart(event)">PROCEED</button>
     </div>
     <div class="quiz" id="begginingquiz"></div>

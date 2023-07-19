@@ -123,14 +123,6 @@ footer {
 .results * {
   display: inline-block;
 }
-
-.textcenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
 .centered {
   text-align: center;
 }
@@ -161,8 +153,16 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #0b113b;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 #grafico {
   width: 100px;
   height: 100px;
