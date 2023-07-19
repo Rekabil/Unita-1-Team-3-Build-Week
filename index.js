@@ -443,25 +443,12 @@ let c = 60;
 let intervalID = null;
 const countDown = () => {
   intervalID = setInterval(function () {
-    document.getElementById(
-      "countDown"
-    ).innerHTML = `<canvas id="grafico"></canvas><div class="textcenter"><p >${c}</p></div>`;
+    document.getElementById("countDown").innerHTML = `<div id=grafico></div><div class="textcenter"><p >${c}</p></div>`;
 
-    let graficCount = document.getElementById("grafico");
-    let graficCounter = new Chart(graficCount, {
-      type: "doughnut",
-      data: {
-        datasets: [
-          {
-            data: [c, 60 - c],
-            backgroundColor: ["#10FF03", "#FF6384"],
-            hoverBackgroundColor: ["#36A2EB", "#FF6384"],
-            cutout: 30,
-          },
-        ],
-      },
-    });
-    graficCounter;
+    let pieChart = document.getElementById("grafico");
+    let temporimasto = ((60 - c) * 360) / 60;
+    pieChart.style.background =
+      " conic-gradient(#ff0000 0deg, #ff0000 " + temporimasto + "deg, #05FF09 " + temporimasto + "deg, #05FF09 360deg)";
     c--;
     if (c < 0) {
       answer();
@@ -540,33 +527,27 @@ function risultati() {
   document.getElementById("begginingquiz").innerHTML += `<h3>The summery of your anwsers`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<div id="results" class="results"><h1>Correct ${rispostegiuste}/10</h1></br></div>`;
+  ).innerHTML += `<div id="results" class="results"><h3>Correct ${rispostegiuste}/10</h3></div>`;
 
   if (rispostegiuste > 5) {
     document.getElementById("results").innerHTML +=
-      "<canvas id='chart'></canvas><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div></br>";
+      "<div id='chart'></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes.</br>Check your email(including promotions / span folder)</p></div></br>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<canvas id='chart'></canvas><div class='textcenter'><h4>We are sorry</h4><h4 class='blue'>You didn't pass the exam</h4></div></br>";
+      "<div id='chart'></div><div class='textcenter'><h4>We are sorry</h4></br><h4 class='blue'>You didn't pass the exam</h4></div>";
   }
-  document.getElementById("results").innerHTML += `<h1>Wrong ${10 - rispostegiuste}/10</h1></br>`;
+  document.getElementById("results").innerHTML += `<h3>Wrong ${10 - rispostegiuste}/10</h3>`;
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" href="feedback.html" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
   let ctx = document.getElementById("chart");
-  let chart = new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      datasets: [
-        {
-          data: [rispostegiuste, 10 - rispostegiuste],
-          backgroundColor: ["#36A2EB", "#FF6384"],
-          hoverBackgroundColor: ["#36A2EB", "#FF6384"],
-          cutout: 100,
-        },
-      ],
-    },
-  });
+  let chartRisultati = (rispostegiuste * 360) / 10;
+  ctx.style.background =
+    " conic-gradient(#05FF09 0deg, #05FF09 " +
+    chartRisultati +
+    "deg, #ff0000 " +
+    chartRisultati +
+    "deg, #ff0000 360deg)";
 }
 
 function rating(clickEvent) {
