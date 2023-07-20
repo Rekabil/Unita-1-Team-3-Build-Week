@@ -551,6 +551,10 @@ function risultati() {
   let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(2);
   let rispsbagliatePer = (((qcount - rispostegiuste) / qcount) * 100).toFixed(2);
   document.getElementById("begginingquiz").innerHTML = "";
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="btn" onclick="leaderboard(event)">LEADERBOARD</button>`;
+  document.getElementById("begginingquiz").innerHTML += `<button class="btn" onclick="retry(event)">RE-DO</button>`;
   document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
@@ -573,12 +577,7 @@ function risultati() {
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" onclick="viewQuestions(event)">VIEW YOUR ANSWERS</button>`;
-  document.getElementById(
-    "begginingquiz"
-  ).innerHTML += `<button class="bluebutton" onclick="leaderboard(event)">LEADERBOARD</button>`;
-  document.getElementById(
-    "begginingquiz"
-  ).innerHTML += `<button class="bluebutton" onclick="retry(event)">RE-DO</button>`;
+
   let ctx = document.getElementById("chart");
   let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =

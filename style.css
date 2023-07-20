@@ -293,3 +293,8 @@ h3 span {
   display: inline-block;
   width: 25%;
 }
+.btn {
+  text-align: left;
+  background: transparent;
+  color: #00ffff;
+}
