@@ -427,6 +427,7 @@ function quizStart(eventClick) {
   let difficulty = document.getElementById("difficultySelect").value;
   qcount = document.getElementById("nQuestion").value;
   qcount = parseInt(qcount);
+  document.getElementById("main").innerHTML += `<div class="quiz" id="begginingquiz"></div>`;
   if (!isNaN(qcount)) {
     for (let i = 0; i < quiz.length; i++) {
       if (quiz[i].difficulty === difficulty && quest.length < qcount) {
@@ -449,6 +450,7 @@ let index = 0;
 let rispostegiuste = 0;
 let c = 60;
 let intervalID = null;
+let chosenAnswer = [];
 const countDown = () => {
   intervalID = setInterval(function () {
     document.getElementById(
@@ -511,11 +513,15 @@ function select(event) {
 function answer(eventClick) {
   clearInterval(intervalID);
   let risp = document.querySelector(".selected");
+
   if (risp != null) {
+    chosenAnswer.push(risp.value);
     let rispostaSelect = risp.value;
     if (rispostaSelect === quest[index].correct_answer) {
       rispostegiuste += 1;
     }
+  } else {
+    chosenAnswer.push("TimedOut/No Answer");
   }
   index += 1;
   c = 60;
@@ -532,7 +538,8 @@ function answer(eventClick) {
 }
 
 function risultati() {
-  document.getElementById("begginingquiz").innerHTML += `<h1 class="risTitle">Results</h1>`;
+  document.getElementById("begginingquiz").innerHTML = "";
+  document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
     "begginingquiz"
@@ -548,7 +555,10 @@ function risultati() {
   document.getElementById("results").innerHTML += `<h3>Wrong ${qcount - rispostegiuste}/${qcount}</h3>`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<button class="bluebutton" href="feedback.html" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
+  ).innerHTML += `<button class="bluebutton" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="bluebutton" onclick="viewQuestions(event)">VIEW YOUR QUESTIONS</button>`;
   let ctx = document.getElementById("chart");
   let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =
@@ -557,6 +567,28 @@ function risultati() {
     "deg,   #00FFFF " +
     chartRisultati +
     "deg,  #00FFFF 360deg)";
+}
+
+function viewQuestions(clickEvent) {
+  document.getElementById("begginingquiz").innerHTML = "";
+  document.getElementById("begginingquiz").innerHTML += "<h1>Your Answers:</h1>";
+  document.getElementById("begginingquiz").innerHTML += `<div id="quizAnswer"></div>`;
+  for (let i = 0; i < quest.length; i++) {
+    document.getElementById("quizAnswer").innerHTML += `<h4 class="question">${quest[i].question}</h4>`;
+    document.getElementById(
+      "quizAnswer"
+    ).innerHTML += `<p class="Answer">The Correct Answer is : ${quest[i].correct_answer},</p>`;
+    if (quest[i].correct_answer === chosenAnswer[i]) {
+      document.getElementById("quizAnswer").innerHTML += `<p class="correct Answer"> And you were Correct</p>`;
+    } else {
+      document.getElementById(
+        "quizAnswer"
+      ).innerHTML += `<p class="wrong Answer"> But You Answered: ${chosenAnswer[i]}`;
+    }
+  }
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `</br><button class="bluebutton" onclick="risultati(event)">GO BACK</button>`;
 }
 
 function rating(clickEvent) {

@@ -80,6 +80,11 @@ select option {
 .quiz {
   text-align: center;
   height: 500px;
+  max-height: 500px;
+}
+#quizAnswer {
+  max-height: 350px;
+  overflow: scroll;
 }
 .risposta {
   border-radius: 50px;
@@ -226,9 +231,15 @@ footer {
 #divdiff {
   text-align: center;
 }
-.risTitle {
-  margin: 0 auto;
+.Answer {
+  display: inline;
 }
-.results h3 {
-  font-size: 30px;
+.correct {
+  color: greenyellow;
+}
+.wrong {
+  color: red;
+}
+.question {
+  color: rgb(38, 172, 255);
 }
