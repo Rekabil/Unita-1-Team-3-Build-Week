@@ -532,7 +532,7 @@ function answer(eventClick) {
 }
 
 function risultati() {
-  document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
+  document.getElementById("begginingquiz").innerHTML += `<h1 class="risTitle">Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
     "begginingquiz"
@@ -540,10 +540,10 @@ function risultati() {
 
   if (rispostegiuste > qcount / 2) {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes. Check your email(including promotions / span folder)</p></div>";
+      "<div id='chart'><div class='emptychart'><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes. Check your email(including promotions / span folder)</p></div>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
+      "<div id='chart'><div class='emptychart'><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
   }
   document.getElementById("results").innerHTML += `<h3>Wrong ${qcount - rispostegiuste}/${qcount}</h3>`;
   document.getElementById(
@@ -552,7 +552,7 @@ function risultati() {
   let ctx = document.getElementById("chart");
   let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =
-    " conic-gradient(#B51289 0deg,#B51289 " +
+    "conic-gradient(#B51289 0deg,#B51289 " +
     chartRisultati +
     "deg,   #00FFFF " +
     chartRisultati +
