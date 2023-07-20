@@ -420,14 +420,16 @@ const quiz = [
     incorrect_answers: ["Hashing algorithm", "Asymmetric encryption", "Stream cipher"],
   },
 ];
+let insertnome = "";
 let buttons = [];
 let quest = [];
 let qcount = null;
+const leaderboardList = [];
 function quizStart(eventClick) {
   let difficulty = document.getElementById("difficultySelect").value;
   qcount = document.getElementById("nQuestion").value;
   qcount = parseInt(qcount);
-
+  insertnome = document.getElementById("insertName").value;
   if (!isNaN(qcount)) {
     for (let i = 0; i < quiz.length; i++) {
       if (quiz[i].difficulty === difficulty && quest.length < qcount) {
@@ -533,7 +535,7 @@ function answer(eventClick) {
   if (index < qcount) {
     menuQuiz();
   } else {
-    document.getElementById("countDown").remove();
+    document.getElementById("countDown").innerHTML = "";
     risultati();
   }
 }
@@ -541,6 +543,8 @@ function answer(eventClick) {
 function risultati() {
   let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(2);
   let rispsbagliatePer = (((qcount - rispostegiuste) / qcount) * 100).toFixed(2);
+  let leaderobj = { name: insertnome, score: rispGiustePer };
+  leaderboardList.push(leaderobj);
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
@@ -564,6 +568,12 @@ function risultati() {
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" onclick="viewQuestions(event)">VIEW YOUR ANSWERS</button>`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="bluebutton" onclick="leaderboard(event)">LEADERBOARD</button>`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="bluebutton" onclick="retry(event)">RE-DO</button>`;
   let ctx = document.getElementById("chart");
   let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =
@@ -613,4 +623,47 @@ function rating(clickEvent) {
       }
     }
   }
+}
+
+function leaderboard(clickEvent) {
+  document.getElementById("begginingquiz").innerHTML = "";
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<h1 class="leaderboardtitle">Leaderboard</h1><div><div id="leaderboardcontainer"></div>`;
+
+  console.log(leaderboardList);
+  for (let i = 0; i < leaderboardList.length; i++) {
+    document.getElementById(
+      "leaderboardcontainer"
+    ).innerHTML += `<div class="leadRow"><div class="leadName">${leaderboardList[i].name}</div><div class="score">Score: ${leaderboardList[i].score}</div></div>`;
+  }
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `</br><button class="bluebutton" onclick="risultati(event)">GO BACK</button>`;
+}
+
+function retry() {
+  index = 0;
+  rispostegiuste = 0;
+  buttons = [];
+  quest = [];
+  qcount = null;
+  document.getElementById("main").innerHTML = "";
+  document.getElementById("main").innerHTML += ` <div id="divdiff">
+  <label>Who is doing the Quiz?</label><br />
+  <input class="inputname" id="insertName" type="text" placeholder="Insert your name here" /><br />
+  <h3 class="quiztitle">Select your difficulty:</h3>
+  <br />
+  <select class="diffselect" name="diff" id="difficultySelect">
+    <option value="easy">EASY max 15 questions</option>
+    <option value="medium">MEDIUM max 22 questions</option>
+    <option value="hard">HARD max 13 questions</option>
+  </select>
+  <br /><br /><br />
+  <div>
+    <label>Insert the number of questions:</label><br />
+    <input id="nQuestion" class="inputnumber" type="number" placeholder="10" /><br />
+    <button class="bluebutton rightalign" onclick="quizStart(event)">PROCEED</button>
+  </div>
+</div>`;
 }
