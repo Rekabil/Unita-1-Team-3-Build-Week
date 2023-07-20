@@ -543,7 +543,7 @@ function risultati() {
       "<div id='chart'><div class='emptychart'><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes. Check your email(including promotions / span folder)</p></div>";
   } else {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'><div class='emptychart'><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
+      "<div id='chart'></div><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
   }
   document.getElementById("results").innerHTML += `<h3>Wrong ${qcount - rispostegiuste}/${qcount}</h3>`;
   document.getElementById(
