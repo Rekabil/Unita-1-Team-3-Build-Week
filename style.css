@@ -19,7 +19,7 @@ img {
 
 h1 {
   font-size: 60px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 0.8;
   font-family: "Outfit", sans-serif;
 }
@@ -87,15 +87,16 @@ select option {
   overflow: scroll;
 }
 .risposta {
-  border-radius: 20px;
+  border-radius: 50px;
   width: 300px;
-  padding-block: 30px;
+  padding-block: 20px;
   margin: 20px 50px;
   font-weight: bolder;
   font-size: 1.2rem;
   background-color: rgba(255, 255, 255, 0);
   color: white;
   display: inline-block;
+  box-shadow: -1px -1px 1px 1px white;
 }
 .selected {
   background: rgb(210, 0, 147);
@@ -172,6 +173,7 @@ footer {
   padding: 10px;
   width: 100px;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .textcenter {
@@ -179,6 +181,12 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.congratulcenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-42%, -55%);
 }
 .chartcenter {
   display: flex;
@@ -241,4 +249,12 @@ footer {
 }
 .question {
   color: rgb(38, 172, 255);
+}
+h3 span {
+  font-size: 15px;
+  font-weight: 400;
+}
+.results h3 {
+  font-size: 40px;
+  font-weight: 400;
 }

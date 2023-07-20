@@ -427,7 +427,7 @@ function quizStart(eventClick) {
   let difficulty = document.getElementById("difficultySelect").value;
   qcount = document.getElementById("nQuestion").value;
   qcount = parseInt(qcount);
-  document.getElementById("main").innerHTML += `<div class="quiz" id="begginingquiz"></div>`;
+
   if (!isNaN(qcount)) {
     for (let i = 0; i < quiz.length; i++) {
       if (quiz[i].difficulty === difficulty && quest.length < qcount) {
@@ -438,6 +438,7 @@ function quizStart(eventClick) {
       quest = [];
       alert("Surpassed the max number of questions");
     } else {
+      document.getElementById("main").innerHTML += `<div class="quiz" id="begginingquiz"></div>`;
       document.getElementById("divdiff").remove();
       menuQuiz();
     }
@@ -538,31 +539,35 @@ function answer(eventClick) {
 }
 
 function risultati() {
+  let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(2);
+  let rispsbagliatePer = (((qcount - rispostegiuste) / qcount) * 100).toFixed(2);
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<div id="results" class="results"><h3>Correct ${rispostegiuste}/${qcount}</h3></div>`;
+  ).innerHTML += `<div id="results" class="results"><h3>Correct </br>${rispGiustePer}%</br><span>${rispostegiuste}/${qcount} questions</span></h3> </div>`;
 
   if (rispostegiuste > qcount / 2) {
     document.getElementById("results").innerHTML +=
-      "<div id='chart'><div class='emptychart'><div></div><div class='textcenter'><h4>Congratulations!</h4><h4 class='blue'>You passed the exam.</h4><p>We'll send you the certificate in few minutes. Check your email(including promotions / span folder)</p></div>";
+      "<div id='chart'></div><div class='congratulcenter'>Congratulations!</br></br><span class='blue'>You passed the exam.</span></br></br>We'll send you the certificate</br> in few minutes.</br>Check your email(including </br>/promotions span folder)</div>";
   } else {
     document.getElementById("results").innerHTML +=
       "<div id='chart'></div><div class='textcenter'>We are sorry</br></br><span class='blue'>You didn't pass the exam<span></div>";
   }
-  document.getElementById("results").innerHTML += `<h3>Wrong ${qcount - rispostegiuste}/${qcount}</h3>`;
+  document.getElementById("results").innerHTML += `<h3>Wrong</br>${rispsbagliatePer}%</br><span>${
+    qcount - rispostegiuste
+  }/${qcount} questions</span></h3>`;
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<button class="bluebutton" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<button class="bluebutton" onclick="viewQuestions(event)">VIEW YOUR QUESTIONS</button>`;
+  ).innerHTML += `<button class="bluebutton" onclick="viewQuestions(event)">VIEW YOUR ANSWERS</button>`;
   let ctx = document.getElementById("chart");
   let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =
-    " conic-gradient(#B51289 0deg,#B51289 " +
+    "conic-gradient(#B51289 0deg,#B51289 " +
     chartRisultati +
     "deg,   #00FFFF " +
     chartRisultati +
