@@ -270,3 +270,26 @@ h3 span {
   font-size: 40px;
   font-weight: 400;
 }
+#leaderboardcontainer {
+  height: 300px;
+  overflow: scroll;
+  box-shadow: -1px -1px 1px 1px white;
+}
+.leadRow {
+  position: relative;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid #c2128d;
+  height: 30px;
+}
+.leadName {
+  position: relative;
+  display: inline-block;
+  width: 75%;
+  line-height: 35px;
+}
+.score {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+}

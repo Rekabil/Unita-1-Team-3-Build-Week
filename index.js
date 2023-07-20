@@ -430,22 +430,26 @@ function quizStart(eventClick) {
   qcount = document.getElementById("nQuestion").value;
   qcount = parseInt(qcount);
   insertnome = document.getElementById("insertName").value;
-  if (!isNaN(qcount)) {
-    for (let i = 0; i < quiz.length; i++) {
-      if (quiz[i].difficulty === difficulty && quest.length < qcount) {
-        quest.push(quiz[i]);
+  if (insertnome !== "") {
+    if (!isNaN(qcount)) {
+      for (let i = 0; i < quiz.length; i++) {
+        if (quiz[i].difficulty === difficulty && quest.length < qcount) {
+          quest.push(quiz[i]);
+        }
       }
-    }
-    if (qcount > quest.length) {
-      quest = [];
-      alert("Surpassed the max number of questions");
+      if (qcount > quest.length) {
+        quest = [];
+        alert("Surpassed the max number of questions");
+      } else {
+        document.getElementById("main").innerHTML += `<div class="quiz" id="begginingquiz"></div>`;
+        document.getElementById("divdiff").remove();
+        menuQuiz();
+      }
     } else {
-      document.getElementById("main").innerHTML += `<div class="quiz" id="begginingquiz"></div>`;
-      document.getElementById("divdiff").remove();
-      menuQuiz();
+      alert("Choose the number of questions");
     }
   } else {
-    alert("Choose the numeber of questions");
+    alert("Insert Your Name");
   }
 }
 
@@ -535,6 +539,9 @@ function answer(eventClick) {
   if (index < qcount) {
     menuQuiz();
   } else {
+    let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(2);
+    let leaderobj = { name: insertnome, score: rispGiustePer };
+    leaderboardList.push(leaderobj);
     document.getElementById("countDown").innerHTML = "";
     risultati();
   }
@@ -543,8 +550,6 @@ function answer(eventClick) {
 function risultati() {
   let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(2);
   let rispsbagliatePer = (((qcount - rispostegiuste) / qcount) * 100).toFixed(2);
-  let leaderobj = { name: insertnome, score: rispGiustePer };
-  leaderboardList.push(leaderobj);
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
@@ -630,12 +635,13 @@ function leaderboard(clickEvent) {
   document.getElementById(
     "begginingquiz"
   ).innerHTML += `<h1 class="leaderboardtitle">Leaderboard</h1><div><div id="leaderboardcontainer"></div>`;
-
-  console.log(leaderboardList);
+  leaderboardList.sort((a, b) => {
+    return b.score - a.score;
+  });
   for (let i = 0; i < leaderboardList.length; i++) {
     document.getElementById(
       "leaderboardcontainer"
-    ).innerHTML += `<div class="leadRow"><div class="leadName">${leaderboardList[i].name}</div><div class="score">Score: ${leaderboardList[i].score}</div></div>`;
+    ).innerHTML += `<div class="leadRow"><div class="leadName">${leaderboardList[i].name}</div><div class="score">Score: ${leaderboardList[i].score}%</div></div>`;
   }
   document.getElementById(
     "begginingquiz"
