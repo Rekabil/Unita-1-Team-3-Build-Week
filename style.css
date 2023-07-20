@@ -270,3 +270,8 @@ h3 span {
   font-size: 40px;
   font-weight: 400;
 }
+.btn {
+  text-align: left;
+  background: transparent;
+  color: #00ffff;
+}
