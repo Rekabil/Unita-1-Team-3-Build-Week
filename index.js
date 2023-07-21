@@ -548,13 +548,10 @@ function answer(eventClick) {
 }
 
 function risultati() {
-  let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(2);
-  let rispsbagliatePer = (((qcount - rispostegiuste) / qcount) * 100).toFixed(2);
+  let rispGiustePer = ((rispostegiuste / qcount) * 100).toFixed(1);
+  let rispsbagliatePer = (((qcount - rispostegiuste) / qcount) * 100).toFixed(1);
   document.getElementById("begginingquiz").innerHTML = "";
-  document.getElementById(
-    "begginingquiz"
-  ).innerHTML += `<button class="btn" onclick="leaderboard(event)">LEADERBOARD</button>`;
-  document.getElementById("begginingquiz").innerHTML += `<button class="btn" onclick="retry(event)">RE-DO</button>`;
+
   document.getElementById("begginingquiz").innerHTML += `<h1>Results</h1>`;
   document.getElementById("begginingquiz").innerHTML += `<h2>The summery of your anwsers</h2>`;
   document.getElementById(
@@ -573,11 +570,16 @@ function risultati() {
   }/${qcount} questions</span></h3>`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<button class="bluebutton" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
+  ).innerHTML += `<button class="btn" onclick="window.location.href='/feedback.html'">FEEDBACK</button>`;
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<button class="bluebutton" onclick="viewQuestions(event)">VIEW YOUR ANSWERS</button>`;
-
+  ).innerHTML += `<button class="btn" onclick="viewQuestions(event)">VIEW YOUR ANSWERS</button>`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="btn" onclick="leaderboard(event)"><img src="assets/award-solid.svg" alt=""></button>`;
+  document.getElementById(
+    "begginingquiz"
+  ).innerHTML += `<button class="btn" onclick="retry(event)"><img src="assets/redo-solid.svg" alt=""></button>`;
   let ctx = document.getElementById("chart");
   let chartRisultati = ((qcount - rispostegiuste) * 360) / qcount;
   ctx.style.background =
@@ -633,7 +635,7 @@ function leaderboard(clickEvent) {
   document.getElementById("begginingquiz").innerHTML = "";
   document.getElementById(
     "begginingquiz"
-  ).innerHTML += `<h1 class="leaderboardtitle">Leaderboard</h1><div><div id="leaderboardcontainer"></div>`;
+  ).innerHTML += `<h1 class="leaderboardtitle">Leaderboard</h1><div id="leaderboardcontainer"></div>`;
   leaderboardList.sort((a, b) => {
     return b.score - a.score;
   });
